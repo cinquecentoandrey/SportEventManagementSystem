@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/events")
-public class EventsController {
+@RequestMapping("/admin")
+public class AdminController {
 
     @GetMapping()
-    public String index() {return "events/index";}
+    public String adminPage() {return "admin/adminPage"; }
+
+    @GetMapping("/addNewEvent")
+    public String addNewEvent() {return "admin/addNewEvent"; }
 }
