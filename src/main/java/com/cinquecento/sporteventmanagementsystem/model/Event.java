@@ -1,10 +1,11 @@
 package com.cinquecento.sporteventmanagementsystem.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 @Entity
 @Table(name = "Event")
@@ -15,23 +16,25 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int eventId;
 
-    @Column(name = "sport_name")
+    @Column(name = "event_name")
     @NotEmpty(message = "Field should not be empty.")
-    @Size(min = 1, max = 32, message = "Sport name should be between 1 and 32 symbols.")
-    private String sportName;
+    @Size(min = 1, max = 32, message = "Event name should be between 1 and 32 symbols.")
+    private String eventName;
 
     @Column(name = "university_name")
     @NotEmpty(message = "Field should not be empty.")
-    @Size(min = 1, max = 32, message = "University name should be between 1 and 32 symbols.")
+    @Size(min = 1, max = 64, message = "University name should be between 1 and 64 symbols.")
     private String universityName;
 
-    @Column(name = "location")
+    @Column(name = "event_location")
     @NotEmpty(message = "Field should not be empty.")
     @Size(min = 1, max = 32, message = "Location should be between 1 and 32 symbols.")
-    private String location;
+    private String eventLocation;
 
-    @Column(name = "date")
-    private Date date;
+    @Column(name = "event_date")
+    @NotEmpty(message = "Field should not be empty.")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String eventDate;
 
     @Column(name = "first_place_prize")
     @NotEmpty(message = "Field should not be empty.")
@@ -50,11 +53,11 @@ public class Event {
 
     public Event() {}
 
-    public Event(String sportName, String universityName, String location, Date date, double firstPlacePrize, double secondPlacePrize, double thirdPlacePrize) {
-        this.sportName = sportName;
+    public Event(String eventName, String universityName, String eventLocation, String eventDate, double firstPlacePrize, double secondPlacePrize, double thirdPlacePrize) {
+        this.eventName = eventName;
         this.universityName = universityName;
-        this.location = location;
-        this.date = date;
+        this.eventLocation = eventLocation;
+        this.eventDate = eventDate;
         this.firstPlacePrize = firstPlacePrize;
         this.secondPlacePrize = secondPlacePrize;
         this.thirdPlacePrize = thirdPlacePrize;
@@ -68,12 +71,12 @@ public class Event {
         this.eventId = eventId;
     }
 
-    public String getSportName() {
-        return sportName;
+    public String getEventName() {
+        return eventName;
     }
 
-    public void setSportName(String sportName) {
-        this.sportName = sportName;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     public String getUniversityName() {
@@ -84,20 +87,20 @@ public class Event {
         this.universityName = universityName;
     }
 
-    public String getLocation() {
-        return location;
+    public String getEventLocation() {
+        return eventLocation;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setEventLocation(String eventLocation) {
+        this.eventLocation = eventLocation;
     }
 
-    public Date getDate() {
-        return date;
+    public String getEventDate() {
+        return eventDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
     }
 
     public double getFirstPlacePrize() {
