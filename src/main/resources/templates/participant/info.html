@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+</head>
+<body>
+<h2>Your info</h2>
+<p th:text="${'Username: ' + participant.getUsername()}"></p>
+<p th:text="${'Name: ' + participant.getName()}"></p>
+<p th:text="${'Age: ' + participant.getAge()}"></p>
+<p th:text="${'Gender: ' + participant.getGender()}"></p>
+<p th:text="${'Date of birth: ' + participant.getDateOfBirth()}"></p>
+<p th:text="${'Email: ' + participant.getEmail()}"></p>
+<p th:text="${'Telephone: ' + participant.getTelephone()}"></p>
+<p th:text="${'University name: ' + participant.getUniversityName()}"></p>
+
+
+
+<p th:text="${participant.getName() + ', ' + participant.getRole()}"></p>
+<form th:action="@{/logout}" th:method="POST">
+    <input type="submit" value="Logout">
+</form>
+
+<a href="/events">Events</a>
+<a href="/results">My results</a>
+
+</body>
+</html>
