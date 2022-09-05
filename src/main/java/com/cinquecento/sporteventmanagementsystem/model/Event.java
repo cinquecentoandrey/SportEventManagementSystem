@@ -6,6 +6,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.security.AllPermission;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Event")
@@ -51,6 +54,11 @@ public class Event {
     @Min(value = 0, message = "The minimum value must be greater than or equal to 0")
     private double thirdPlacePrize;
 
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name = "Event_Participant",
+            joinColumns = {@JoinColumn(name = "event_id")},
+            inverseJoinColumns = {@JoinColumn(name = "participant_id")})
+    private Set<Participant> participants = new HashSet<>();
     public Event() {}
 
     public Event(String eventName, String universityName, String eventLocation, String eventDate, double firstPlacePrize, double secondPlacePrize, double thirdPlacePrize) {
@@ -125,5 +133,28 @@ public class Event {
 
     public void setThirdPlacePrize(double thirdPlacePrize) {
         this.thirdPlacePrize = thirdPlacePrize;
+    }
+
+    public Set<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(Set<Participant> participants) {
+        this.participants = participants;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventId=" + eventId +
+                ", eventName='" + eventName + '\'' +
+                ", universityName='" + universityName + '\'' +
+                ", eventLocation='" + eventLocation + '\'' +
+                ", eventDate='" + eventDate + '\'' +
+                ", firstPlacePrize=" + firstPlacePrize +
+                ", secondPlacePrize=" + secondPlacePrize +
+                ", thirdPlacePrize=" + thirdPlacePrize +
+                ", participants=" + participants +
+                '}';
     }
 }

@@ -4,6 +4,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Participant")
@@ -59,6 +61,12 @@ public class Participant {
     @Column(name = "password")
     @NotEmpty(message = "Field should not be empty.")
     private String password;
+
+    @Column(name = "role")
+    private String role;
+
+    @ManyToMany(mappedBy = "participants")
+    private Set<Event> events = new HashSet<>();
 
     public Participant() {}
 
@@ -153,18 +161,37 @@ public class Participant {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
+    }
+
     @Override
     public String toString() {
         return "Participant{" +
-                "name='" + name + '\'' +
+                "participantId=" + participantId +
+                ", name='" + name + '\'' +
                 ", age=" + age +
-                ", dateOfBirth=" + dateOfBirth +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", gender='" + gender + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", universityName='" + universityName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", events=" + events +
                 '}';
     }
 }
