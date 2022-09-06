@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -39,17 +40,17 @@ public class Event {
     private String eventDate;
 
     @Column(name = "first_place_prize")
-    @NotEmpty(message = "Field should not be empty.")
+    @NotNull(message = "Field should not be empty.")
     @Min(value = 0, message = "The minimum value must be greater than or equal to 0")
     private double firstPlacePrize;
 
     @Column(name = "second_place_prize")
-    @NotEmpty(message = "Field should not be empty.")
+    @NotNull(message = "Field should not be empty.")
     @Min(value = 0, message = "The minimum value must be greater than or equal to 0")
     private double secondPlacePrize;
 
     @Column(name = "third_place_prize")
-    @NotEmpty(message = "Field should not be empty.")
+    @NotNull(message = "Field should not be empty.")
     @Min(value = 0, message = "The minimum value must be greater than or equal to 0")
     private double thirdPlacePrize;
 
