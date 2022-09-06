@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Participants</title>
+</head>
+<body>
+<p>Participants</p>
+<div th:if="${!participants.isEmpty()}">
+    <br/>
+    <table th:each="p : ${participants}">
+        <tr th:text="${ p.getParticipantId() + ', '
+                        + p.getName() + ', '
+                        + p.getUsername() + ', '
+                        + p.getDateOfBirth() + ', '
+                        + p.getUniversityName() + ', '
+                        + p.getTelephone() + ', '
+                        + p.getEmail()
+                        }"/>
+    </table>
+    <hr/>
+</div>
+</body>
+</html>

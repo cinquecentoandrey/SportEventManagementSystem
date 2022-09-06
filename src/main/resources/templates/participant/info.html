@@ -5,6 +5,7 @@
     <title>Info</title>
 </head>
 <body>
+
 <h2>Your info</h2>
 <p th:text="${'Username: ' + participant.getUsername()}"></p>
 <p th:text="${'Name: ' + participant.getName()}"></p>
@@ -14,8 +15,6 @@
 <p th:text="${'Email: ' + participant.getEmail()}"></p>
 <p th:text="${'Telephone: ' + participant.getTelephone()}"></p>
 <p th:text="${'University name: ' + participant.getUniversityName()}"></p>
-
-
 
 <p th:text="${participant.getName() + ', ' + participant.getRole()}"></p>
 <form th:action="@{/logout}" th:method="POST">

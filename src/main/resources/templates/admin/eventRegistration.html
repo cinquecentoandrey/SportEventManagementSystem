@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Event</title>
+</head>
+<body>
+<p>Add new event</p>
+<hr/>
+<form th:method="POST" th:action="@{/admin/eventRegistration}" th:object="${event}">
+    <label for="eventName">Enter name:</label>
+    <input type="text" th:field="*{eventName}" id="eventName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}">Name error.</div>
+    <br/>
+
+    <label for="universityName">Enter university name:</label>
+    <input type="text" th:field="*{universityName}" id="universityName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('universityName')}" th:errors="*{universityName}">University name error.</div>
+    <br/>
+
+    <label for="eventLocation">Enter event location:</label>
+    <input type="text" th:field="*{eventLocation}" id="eventLocation"/>
+    <div style="color:red" th:if="${#fields.hasErrors('eventLocation')}" th:errors="*{eventLocation}">Event location error.</div>
+    <br/>
+
+    <label for="eventDate">Enter event date:</label>
+    <input type="date" th:field="*{eventDate}" id="eventDate"/>
+    <div style="color:red" th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}">Event date error.</div>
+    <br/>
+
+    <label for="firstPlacePrize">Enter first place prize:</label>
+    <input type="number" th:field="*{firstPlacePrize}" id="firstPlacePrize"/>
+    <div style="color:red" th:if="${#fields.hasErrors('firstPlacePrize')}" th:errors="*{firstPlacePrize}">First place prize error.</div>
+    <br/>
+
+    <label for="secondPlacePrize">Enter second place prize:</label>
+    <input type="number" th:field="*{secondPlacePrize}" id="secondPlacePrize"/>
+    <div style="color:red" th:if="${#fields.hasErrors('secondPlacePrize')}" th:errors="*{secondPlacePrize}">Second place prize error.</div>
+    <br/>
+
+    <label for="thirdPlacePrize">Enter third place prize:</label>
+    <input type="number" th:field="*{thirdPlacePrize}" id="thirdPlacePrize"/>
+    <div style="color:red" th:if="${#fields.hasErrors('thirdPlacePrize')}" th:errors="*{thirdPlacePrize}">Third place prize error.</div>
+    <br/>
+
+    <input type="submit" value="Create!" style="background-color: seagreen"/>
+</form>
+<hr/>
+<a href="/admin">Admin page</a>
+</body>
+</html>
