@@ -6,7 +6,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.security.AllPermission;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -59,6 +58,7 @@ public class Event {
             joinColumns = {@JoinColumn(name = "event_id")},
             inverseJoinColumns = {@JoinColumn(name = "participant_id")})
     private Set<Participant> participants = new HashSet<>();
+    
     public Event() {}
 
     public Event(String eventName, String universityName, String eventLocation, String eventDate, double firstPlacePrize, double secondPlacePrize, double thirdPlacePrize) {
