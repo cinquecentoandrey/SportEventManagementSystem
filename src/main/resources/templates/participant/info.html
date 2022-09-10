@@ -24,5 +24,9 @@
 <a href="/events">Events</a>
 <a href="/results">My results</a>
 
+<div th:if="${participant.getRole() == 'ROLE_ADMIN'}">
+    <a href="/admin">Admin page</a>
+</div>
+
 </body>
 </html>
