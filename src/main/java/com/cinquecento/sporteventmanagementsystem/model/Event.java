@@ -41,18 +41,23 @@ public class Event {
 
     @Column(name = "first_place_prize")
     @NotNull(message = "Field should not be empty.")
-    @Min(value = 0, message = "The minimum value must be greater than or equal to 0")
+    @Min(value = 0, message = "The minimum value must be greater than or equal to 0.")
     private double firstPlacePrize;
 
     @Column(name = "second_place_prize")
     @NotNull(message = "Field should not be empty.")
-    @Min(value = 0, message = "The minimum value must be greater than or equal to 0")
+    @Min(value = 0, message = "The minimum value must be greater than or equal to 0.")
     private double secondPlacePrize;
 
     @Column(name = "third_place_prize")
     @NotNull(message = "Field should not be empty.")
-    @Min(value = 0, message = "The minimum value must be greater than or equal to 0")
+    @Min(value = 0, message = "The minimum value must be greater than or equal to 0.")
     private double thirdPlacePrize;
+
+    @Column(name = "event_description")
+    @NotEmpty(message = "Field should not be empty.")
+    @Size(min = 1, max = 256, message = "University name should be between 1 and 256 symbols.")
+    private String eventDescription;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "Event_Participant",
@@ -62,7 +67,7 @@ public class Event {
     
     public Event() {}
 
-    public Event(String eventName, String universityName, String eventLocation, String eventDate, double firstPlacePrize, double secondPlacePrize, double thirdPlacePrize) {
+    public Event(String eventName, String universityName, String eventLocation, String eventDate, double firstPlacePrize, double secondPlacePrize, double thirdPlacePrize, String eventDescription) {
         this.eventName = eventName;
         this.universityName = universityName;
         this.eventLocation = eventLocation;
@@ -70,6 +75,7 @@ public class Event {
         this.firstPlacePrize = firstPlacePrize;
         this.secondPlacePrize = secondPlacePrize;
         this.thirdPlacePrize = thirdPlacePrize;
+        this.eventDescription = eventDescription;
     }
 
     public int getEventId() {
@@ -136,6 +142,14 @@ public class Event {
         this.thirdPlacePrize = thirdPlacePrize;
     }
 
+    public String getEventDescription() {
+        return eventDescription;
+    }
+
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
+    }
+
     public Set<Participant> getParticipants() {
         return participants;
     }
@@ -155,6 +169,7 @@ public class Event {
                 ", firstPlacePrize=" + firstPlacePrize +
                 ", secondPlacePrize=" + secondPlacePrize +
                 ", thirdPlacePrize=" + thirdPlacePrize +
+                ", eventDescription='" + eventDescription + '\'' +
                 ", participants=" + participants +
                 '}';
     }
