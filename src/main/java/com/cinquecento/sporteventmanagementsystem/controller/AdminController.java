@@ -12,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -23,7 +25,6 @@ public class AdminController {
 
     private final EventsService eventsService;
     private final ParticipantsService participantsService;
-
     private final EventValidator eventValidator;
 
     @Autowired
@@ -54,14 +55,19 @@ public class AdminController {
 
     @GetMapping("/showAllParticipants")
     public String showAllParticipants(Model model) {
-        List<Participant> participants = participantsService.findAll();
-
-        participants = participants.stream().filter(participant ->
-            participant.getRole().equals("ROLE_USER")).collect(Collectors.toList());
+        List<Participant> participants = participantsService.findAll().stream().filter(participant ->
+                participant.getRole().equals("ROLE_USER")).collect(Collectors.toList());
 
         model.addAttribute("participants", participants);
         return "admin/participants";
     }
 
+    @GetMapping("/participantInfo/{id}")
+    public String showParticipant(@PathVariable("id") int id,
+                                  Model model) {
+        Optional<Participant> participant = participantsService.findById(id);
+        model.addAttribute("participant", participant.get());
+        return "admin/participantInfo";
+    }
 
 }
