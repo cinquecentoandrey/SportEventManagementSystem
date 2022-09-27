@@ -3,49 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>New Event</title>
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
-<p>Add new event</p>
-<hr/>
-<form th:method="POST" th:action="@{/admin/eventRegistration}" th:object="${event}">
-    <label for="eventName">Enter name:</label>
-    <input type="text" th:field="*{eventName}" id="eventName"/>
-    <div style="color:red" th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}">Name error.</div>
-    <br/>
 
-    <label for="universityName">Enter university name:</label>
-    <input type="text" th:field="*{universityName}" id="universityName"/>
-    <div style="color:red" th:if="${#fields.hasErrors('universityName')}" th:errors="*{universityName}">University name error.</div>
-    <br/>
+<nav class="navbar navbar-expand-lg navbar-color mb-5">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/participant/info">
+                        <h5 class="navbar-text">Home</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/events/show">
+                        <h5 class="navbar-text">Events</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/eventRegistration">
+                        <h5 class="navbar-text">Create event</h5>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/showAllParticipants">
+                        <h5 class="navbar-text">Participants</h5>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <label for="eventLocation">Enter event location:</label>
-    <input type="text" th:field="*{eventLocation}" id="eventLocation"/>
-    <div style="color:red" th:if="${#fields.hasErrors('eventLocation')}" th:errors="*{eventLocation}">Event location error.</div>
-    <br/>
+<div class="container">
+    <form class="row g-3" th:method="POST" th:action="@{/admin/eventRegistration}" th:object="${event}">
 
-    <label for="eventDate">Enter event date:</label>
-    <input type="date" th:field="*{eventDate}" id="eventDate"/>
-    <div style="color:red" th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}">Event date error.</div>
-    <br/>
+        <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Event name" th:field="*{eventName}"/>
+            <div style="color:red" th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}">Name error.</div>
+        </div>
 
-    <label for="firstPlacePrize">Enter first place prize:</label>
-    <input type="number" th:field="*{firstPlacePrize}" id="firstPlacePrize"/>
-    <div style="color:red" th:if="${#fields.hasErrors('firstPlacePrize')}" th:errors="*{firstPlacePrize}">First place prize error.</div>
-    <br/>
+        <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="University name" th:field="*{universityName}"/>
+            <div style="color:red" th:if="${#fields.hasErrors('universityName')}" th:errors="*{universityName}">Uni name error.</div>
+        </div>
 
-    <label for="secondPlacePrize">Enter second place prize:</label>
-    <input type="number" th:field="*{secondPlacePrize}" id="secondPlacePrize"/>
-    <div style="color:red" th:if="${#fields.hasErrors('secondPlacePrize')}" th:errors="*{secondPlacePrize}">Second place prize error.</div>
-    <br/>
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Enter event location" th:field="*{eventLocation}"/>
+            <div style="color:red" th:if="${#fields.hasErrors('eventLocation')}" th:errors="*{eventLocation}">Event location error.</div>
+        </div>
 
-    <label for="thirdPlacePrize">Enter third place prize:</label>
-    <input type="number" th:field="*{thirdPlacePrize}" id="thirdPlacePrize"/>
-    <div style="color:red" th:if="${#fields.hasErrors('thirdPlacePrize')}" th:errors="*{thirdPlacePrize}">Third place prize error.</div>
-    <br/>
+        <div class="col-md-6">
+            <input type="date" class="form-control" placeholder="Event date" th:field="*{eventDate}"/>
+            <div style="color:red" th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}">Event date error.</div>
+        </div>
 
-    <input type="submit" value="Create!" style="background-color: seagreen"/>
-</form>
-<hr/>
-<a href="/admin">Admin page</a>
+        <div class="col-md-4">
+            <input type="number" class="form-control" placeholder="First place prize" th:field="*{firstPlacePrize}"/>
+            <div style="color:red" th:if="${#fields.hasErrors('firstPlacePrize')}" th:errors="*{firstPlacePrize}">First place prize error.</div>
+        </div>
+
+        <div class="col-md-4">
+            <input type="number" class="form-control" placeholder="Second place prize" th:field="*{secondPlacePrize}"/>
+            <div style="color:red" th:if="${#fields.hasErrors('secondPlacePrize')}" th:errors="*{secondPlacePrize}">Second place prize error.</div>
+        </div>
+
+        <div class="col-md-4">
+            <input type="number" class="form-control" placeholder="Third place prize" th:field="*{thirdPlacePrize}"/>
+            <div style="color:red" th:if="${#fields.hasErrors('thirdPlacePrize')}" th:errors="*{thirdPlacePrize}">Third place prize error.</div>
+        </div>
+
+        <div class="col-md-12">
+            <textarea class="form-control"rows="3" placeholder="Description" th:field="*{eventDescription}"></textarea>
+            <div style="color:red" th:if="${#fields.hasErrors('eventDescription')}" th:errors="*{eventDescription}">Description error.</div>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary ">Create event</button>
+        </div>
+    </form>
+</div>
+
+
+
 </body>
 </html>
