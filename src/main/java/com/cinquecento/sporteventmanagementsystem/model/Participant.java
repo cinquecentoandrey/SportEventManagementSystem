@@ -65,7 +65,8 @@ public class Participant {
     @Column(name = "role")
     private String role;
 
-    @ManyToMany(mappedBy = "participants")
+    @ManyToMany(mappedBy = "participants",
+                fetch = FetchType.EAGER)
     private Set<Event> events = new HashSet<>();
 
     public Participant() {}

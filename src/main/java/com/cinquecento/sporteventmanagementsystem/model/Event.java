@@ -59,7 +59,8 @@ public class Event {
     @Size(min = 1, max = 256, message = "University name should be between 1 and 256 symbols.")
     private String eventDescription;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL },
+                fetch = FetchType.EAGER)
     @JoinTable(name = "Event_Participant",
             joinColumns = {@JoinColumn(name = "event_id")},
             inverseJoinColumns = {@JoinColumn(name = "participant_id")})
