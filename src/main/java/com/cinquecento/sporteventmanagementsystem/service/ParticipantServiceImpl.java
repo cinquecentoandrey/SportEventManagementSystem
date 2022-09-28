@@ -1,9 +1,7 @@
 package com.cinquecento.sporteventmanagementsystem.service;
 
-import com.cinquecento.sporteventmanagementsystem.model.Event;
 import com.cinquecento.sporteventmanagementsystem.model.Participant;
 import com.cinquecento.sporteventmanagementsystem.repository.ParticipantsRepository;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +11,12 @@ import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
-public class ParticipantsService {
+public class ParticipantServiceImpl implements ParticipantService{
 
     private final ParticipantsRepository participantsRepository;
 
     @Autowired
-    public ParticipantsService(ParticipantsRepository participantsRepository) {
+    public ParticipantServiceImpl(ParticipantsRepository participantsRepository) {
         this.participantsRepository = participantsRepository;
     }
 
@@ -37,7 +35,7 @@ public class ParticipantsService {
     }
 
     @Transactional
-    public void add(Participant participant) {
+    public void save(Participant participant) {
         participantsRepository.save(participant);
     }
 
