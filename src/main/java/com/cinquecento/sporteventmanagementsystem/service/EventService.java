@@ -2,10 +2,12 @@ package com.cinquecento.sporteventmanagementsystem.service;
 
 import com.cinquecento.sporteventmanagementsystem.model.Event;
 import com.cinquecento.sporteventmanagementsystem.model.Participant;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface EventService {
 
     List<Event> findAll();
