@@ -1,11 +1,10 @@
-package com.cinquecento.eventmanagementsystem.repository;
+package com.cinquecento.sporteventmanagementsystem.repository;
 
-import com.cinquecento.eventmanagementsystem.model.Event;
+import com.cinquecento.sporteventmanagementsystem.model.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
